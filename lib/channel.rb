@@ -18,6 +18,8 @@ class Channel < Recipient
   def self.list_all
     response = self.get(CHANNEL_BASE_URL, { token: BOT_TOKEN })
 
+    raise SlackApiError, "API call failed with error: #{response["error"]}" if ! response["ok"]
+
     channels_list = response["channels"].map do |channels_hash|
       Channel.new(channels_hash["id"], channels_hash["name"], channels_hash["topic"], channels_hash["num_members"])
     end

@@ -5,6 +5,8 @@ Dotenv.load
 BOT_TOKEN = ENV["SLACK_BOT_TOKEN"]
 
 class Recipient
+  class SlackApiError < Exception; end
+
   attr_reader :slack_id, :name
 
   def initialize(slack_id, name)

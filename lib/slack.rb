@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 require_relative 'workspace'
-require_relative 'user'
-require_relative 'channel'
 
 def main
   puts "Welcome to the Ada Slack CLI!"
@@ -9,7 +7,7 @@ def main
 
   # TODO project
   puts "What do you want to do?"
-  puts "1. list users\n2. list channels\n3. quit"
+  puts "1. list users\n2. list channels\n3. select user\n4. select channel\n5. details\n6. quit"
   print ">> "
 
   user_input = gets.chomp.downcase
@@ -20,6 +18,18 @@ def main
       workspace.list_users
     when "list channels"
       workspace.list_channels
+    when "select user"
+      print "Enter the user's name or Slack ID: "
+      user_input = gets.chomp
+
+      puts workspace.select_user(user_input)
+    when "select channel"
+      print "Enter the channel's name or Slack ID: "
+      user_input = gets.chomp
+
+      puts workspace.select_channel(user_input)
+    when "details"
+
     else
       puts "Invalid input. Try again."
     end

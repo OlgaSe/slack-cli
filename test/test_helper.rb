@@ -14,7 +14,7 @@ Dotenv.load
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-  config.cassette_library_dir = "test/cassettes" # folder where casettes will be located
+  config.cassette_library_dir = "test/cassettes" # folder where cassettes will be located
   config.hook_into :webmock # tie into this other tool called webmock
   config.default_cassette_options = {
     :record => :new_episodes,    # record new data when we don't have it yet
@@ -22,7 +22,7 @@ VCR.configure do |config|
   }
 
   # Don't leave our token lying around in a cassette file.
-    config.filter_sensitive_data("<SLACK_BOT_TOKEN>") do
+  config.filter_sensitive_data("<SLACK_BOT_TOKEN>") do
     ENV["SLACK_BOT_TOKEN"]
   end
 end

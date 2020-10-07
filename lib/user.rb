@@ -12,12 +12,14 @@ class User < Recipient
     @status_emoji = status_emoji
   end
 
-  def details
+  def details(self)
 
   end
 
   def self.list_all
     response = self.get(USER_BASE_URL, { token: BOT_TOKEN })
+
+    raise SlackApiError, "API call failed with error: #{response["error"]}" if ! response["ok"]
 
     users_list = response["members"].map do |members_hash|
       User.new(members_hash["id"], members_hash["name"], members_hash["profile"]["real_name"], members_hash["profile"]["status_text"], members_hash["profile"]["status_emoji"])
