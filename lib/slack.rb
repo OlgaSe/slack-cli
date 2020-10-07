@@ -29,7 +29,7 @@ def main
 
       puts workspace.select_channel(user_input)
     when "details"
-
+      workspace.show_details
     else
       puts "Invalid input. Try again."
     end

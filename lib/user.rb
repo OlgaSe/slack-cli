@@ -12,8 +12,8 @@ class User < Recipient
     @status_emoji = status_emoji
   end
 
-  def details(self)
-
+  def details
+    "User: #{@slack_id}, Name: #{@name}, real name: #{@real_name}"
   end
 
   def self.list_all
