@@ -23,10 +23,14 @@ class Workspace
   #replaced select by find, because it returned an array
   def select_user(id_or_name)
     @selected = @users.find { |user| user.slack_id == id_or_name || user.name == id_or_name }
+
+    raise ArgumentError, "User with that name or Slack ID not found" if @selected.nil?
   end
 
   def select_channel(id_or_name)
     @selected = @channels.find { |channel| channel.slack_id == id_or_name || channel.name == id_or_name }
+
+    raise ArgumentError, "Channel with that name or Slack ID not found" if @selected.nil?
   end
 
   def show_details
