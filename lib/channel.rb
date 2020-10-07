@@ -12,13 +12,11 @@ class Channel < Recipient
   end
 
   def details
-    "Channel name: #{@slack_id}, Name: #{@name}, Topic: #{@topic}, Member count: #{@member_count}"
+    "Channel details => ID: #{@slack_id}, Name: #{@name}, Topic: #{@topic}, Member Count: #{@member_count}"
   end
 
   def self.list_all
     response = self.get(CHANNEL_BASE_URL, { token: BOT_TOKEN })
-
-    raise SlackApiError, "API call failed with error: #{response["error"]}" if ! response["ok"]
 
     channels_list = response["channels"].map do |channels_hash|
       Channel.new(channels_hash["id"], channels_hash["name"], channels_hash["topic"], channels_hash["num_members"])

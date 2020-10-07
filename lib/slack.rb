@@ -7,7 +7,7 @@ def main
 
   # TODO project
   puts "What do you want to do?"
-  puts "1. list users\n2. list channels\n3. select user\n4. select channel\n5. details\n6. quit"
+  puts "1. list users\n2. list channels\n3. select user\n4. select channel\n5. details\n6. send message\n7. quit"
   print ">> "
 
   user_input = gets.chomp.downcase
@@ -29,7 +29,9 @@ def main
 
       puts workspace.select_channel(user_input)
     when "details"
-      workspace.show_details
+      puts workspace.show_details
+    when "send message"
+
     else
       puts "Invalid input. Try again."
     end

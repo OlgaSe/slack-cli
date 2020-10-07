@@ -20,7 +20,6 @@ class Workspace
     tp @channels, "slack_id", "name", "topic", "member_count"
   end
 
-  #replaced select by find, because it returned an array
   def select_user(id_or_name)
     @selected = @users.find { |user| user.slack_id == id_or_name || user.name == id_or_name }
 
@@ -34,12 +33,8 @@ class Workspace
   end
 
   def show_details
-    puts @selected.details
-
-
-    # check value of @selected
-    # tp select_user(id_or_name), "slack_id", "name", "real_name", "status_text", "status_emoji"
-    # tp select_channel(id_or_name), "slack_id", "name", "topic", "member_count"
+    raise NoMethodError, "No recipient is currently selected" if @selected.nil?
+    return @selected.details
   end
 
 end
