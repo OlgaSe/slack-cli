@@ -1,0 +1,1 @@
+class SlackApiError < Exception; end

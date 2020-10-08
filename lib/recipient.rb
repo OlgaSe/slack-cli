@@ -1,12 +1,13 @@
 require 'httparty'
 require 'dotenv'
 
+require_relative 'slack_api_error'
+
 Dotenv.load
 SLACK_TOKEN = ENV["SLACK_TOKEN"]
 BASE_URL = "https://slack.com/api/"
 
 class Recipient
-  class SlackApiError < Exception; end
 
   attr_reader :slack_id, :name
 

@@ -36,7 +36,7 @@ describe "list_all method" do
 
     # it "raises an error when token is not provided" do
     #   VCR.use_cassette("list_channels") do
-    #     response = Channel.get(CHANNEL_BASE_URL, { token: "" })
+    #     response = Channel.get("#{BASE_URL}conversations.list", { token: "" })
     #
     #     expect{ response }.must_raise SlackApiError
     #     expect(response["ok"]).must_equal false

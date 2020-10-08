@@ -96,13 +96,13 @@ describe "Workspace class" do
       end
     end
 
-    # it "returns false when channel doesn't exist" do
-    #   VCR.use_cassette("negative-cases") do
-    #     recipient = Recipient.new("", "")
-    #     expect {
-    #       recipient.send_message("weird message")
-    #     }.must_raise SlackApiError
-    #   end
-    # end
+    it "returns false when channel doesn't exist" do
+      VCR.use_cassette("negative-cases") do
+        recipient = Recipient.new("", "")
+        expect {
+          recipient.send_message("weird message")
+        }.must_raise SlackApiError
+      end
+    end
   end
 end
