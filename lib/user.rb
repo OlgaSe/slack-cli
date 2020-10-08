@@ -13,14 +13,18 @@ class User < Recipient
   end
 
   def details
-    "User details => ID: #{@slack_id}, Name: #{@name}, Real Name: #{@real_name}, Status Text: #{@status_text}, Status Emoji: #{@status_emoji}"
+    return "User #{@name}'s real name is #{@real_name}, and their ID on Slack is #{@slack_id}. Their current status reads: #{@status_text} #{@status_emoji}."
   end
 
   def self.list_all
     response = self.get(USER_BASE_URL, { token: BOT_TOKEN })
 
     users_list = response["members"].map do |members_hash|
-      User.new(members_hash["id"], members_hash["name"], members_hash["profile"]["real_name"], members_hash["profile"]["status_text"], members_hash["profile"]["status_emoji"])
+      self.new(members_hash["id"],
+               members_hash["name"],
+               members_hash["profile"]["real_name"],
+               members_hash["profile"]["status_text"],
+               members_hash["profile"]["status_emoji"])
     end
 
     return users_list

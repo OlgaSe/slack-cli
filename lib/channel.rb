@@ -12,14 +12,17 @@ class Channel < Recipient
   end
 
   def details
-    "Channel details => ID: #{@slack_id}, Name: #{@name}, Topic: #{@topic}, Member Count: #{@member_count}"
+    return "Channel #{@name}'s topic is #{@topic} and has #{@member_count} members. Its ID on Slack is #{@slack_id}."
   end
 
   def self.list_all
     response = self.get(CHANNEL_BASE_URL, { token: BOT_TOKEN })
 
     channels_list = response["channels"].map do |channels_hash|
-      Channel.new(channels_hash["id"], channels_hash["name"], channels_hash["topic"], channels_hash["num_members"])
+      self.new(channels_hash["id"],
+               channels_hash["name"],
+               channels_hash["topic"]["value"],
+               channels_hash["num_members"])
     end
 
     return channels_list
