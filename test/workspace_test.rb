@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 require_relative '../lib/workspace'
 
-describe "Workspace class" do
+xdescribe "Workspace class" do
   describe "Workspace instantiation" do
     before do
       @workspace = Workspace.new
