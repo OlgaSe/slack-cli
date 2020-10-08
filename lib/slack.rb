@@ -12,25 +12,37 @@ def main
 
   user_input = gets.chomp.downcase
 
-  until user_input == "quit"
+  until user_input == "quit" || user_input == "7"
     case user_input
-    when "list users"
+    when "list users", "1"
       workspace.list_users
-    when "list channels"
+    when "list channels", "2"
       workspace.list_channels
-    when "select user"
+    when "select user", "3"
       print "Enter the user's name or Slack ID: "
       user_input = gets.chomp
 
-      puts workspace.select_user(user_input)
-    when "select channel"
+      begin
+        puts workspace.select_user(user_input)
+      rescue ArgumentError => exception
+        puts "#{exception}"
+      end
+    when "select channel", "4"
       print "Enter the channel's name or Slack ID: "
       user_input = gets.chomp
 
-      puts workspace.select_channel(user_input)
-    when "details"
-      puts workspace.show_details
-    when "send message"
+      begin
+        puts workspace.select_channel(user_input)
+      rescue ArgumentError => exception
+        puts "#{exception}"
+      end
+    when "details", "5"
+      begin
+        puts workspace.show_details
+      rescue NoMethodError => exception
+        puts "#{exception}"
+      end
+    when "send message", "6"
 
     else
       puts "Invalid input. Try again."
