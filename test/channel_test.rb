@@ -4,7 +4,7 @@ require_relative '../lib/channel'
 describe "Channel class" do
   describe "Channel instantiation" do
     before do
-      @channel = Channel.new("1", "Test Channel", "Anything", 2)
+      @channel = Channel.new("420", "weed", "the good kind of weed", 1)
     end
 
     it "is an instance of Channel" do
@@ -34,11 +34,21 @@ describe "Channel class" do
         expect(channels_list.length).must_equal 3
       end
     end
+
+    it "raises an error when token is not provided" do
+      VCR.use_cassette("list_channels") do
+        response = Channel.get(CHANNEL_BASE_URL)
+
+        expect{ response }.must_raise SlackApiError
+        expect(response["ok"]).must_equal false
+        expect(response["error"]).must_equal "not_authed"
+      end
+    end
   end
 
   describe "details method" do
     before do
-      @channel = Channel.new("1", "Test Channel", "Anything", 2)
+      @channel = Channel.new("420", "weed", "the good kind of weed", 1)
     end
 
     it "returns a String including specific attributes" do
