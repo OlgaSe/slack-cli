@@ -43,7 +43,13 @@ def main
         puts "#{exception}"
       end
     when "send message", "6"
-
+      print "Enter a message here: >>"
+      user_input = gets.chomp
+      begin
+        puts workspace.send_message(user_input)
+      rescue NoMethodError => exception
+        puts "#{exception}"
+      end
     else
       puts "Invalid input. Try again."
     end

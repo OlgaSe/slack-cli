@@ -1,5 +1,6 @@
 require_relative 'test_helper'
 require_relative '../lib/workspace'
+require_relative '../lib/recipient'
 
 describe "Workspace class" do
 
@@ -15,7 +16,7 @@ describe "Workspace class" do
     end
 
     it "is set up for specific attributes and data types" do
-      [:list_users, :list_channels, :no_recipient, :select_user, :select_channel, :show_details].each do |prop|
+      [:list_users, :list_channels, :no_recipient, :select_user, :select_channel, :show_details, :send_message].each do |prop|
         expect(@workspace).must_respond_to prop
       end
 
@@ -83,5 +84,25 @@ describe "Workspace class" do
         @workspace.show_details
       }.must_raise NoMethodError
     end
+  end
+
+  describe "send_message method" do
+    it "sends a message to the testing channel" do
+      VCR.use_cassette("send_message") do
+        @workspace.select_channel('testing')
+        response = @workspace.send_message('This is our first message')
+
+        expect(response).must_equal true
+      end
+    end
+
+    # it "returns false when channel doesn't exist" do
+    #   VCR.use_cassette("negative-cases") do
+    #     recipient = Recipient.new("", "")
+    #     expect {
+    #       recipient.send_message("weird message")
+    #     }.must_raise SlackApiError
+    #   end
+    # end
   end
 end

@@ -3,6 +3,7 @@ require 'dotenv'
 
 Dotenv.load
 BOT_TOKEN = ENV["SLACK_BOT_TOKEN"]
+BASE_URL = "https://slack.com/api/"
 
 class Recipient
   class SlackApiError < Exception; end
@@ -15,7 +16,17 @@ class Recipient
   end
 
   def send_message(message)
+    url = "#{BASE_URL}chat.postMessage"
+    response = HTTParty.post(url,
+                             headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
+                             body: {
+                                 token: BOT_TOKEN,
+                                 channel: self.slack_id,
+                                 text: message
+                             })
+    raise SlackApiError, "API call failed with error: #{response["error"]}" if ! response["ok"]
 
+    return response.code == 200 && response.parsed_response["ok"]
   end
 
   def self.get(url, params)
