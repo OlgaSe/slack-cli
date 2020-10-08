@@ -1,7 +1,5 @@
 require_relative 'recipient'
 
-USER_BASE_URL = "https://slack.com/api/users.list"
-
 class User < Recipient
   attr_reader :real_name, :status_text, :status_emoji
 
@@ -17,7 +15,7 @@ class User < Recipient
   end
 
   def self.list_all
-    response = self.get(USER_BASE_URL, { token: BOT_TOKEN })
+    response = self.get("#{BASE_URL}users.list", { token: SLACK_TOKEN })
 
     users_list = response["members"].map do |members_hash|
       self.new(members_hash["id"],

@@ -66,4 +66,71 @@ http_interactions:
       string: '{"ok":true,"channel":"C01CQMA6E56","ts":"1602194075.000200","message":{"bot_id":"B01C00VN7L5","type":"message","text":"This
         is our first message","user":"U01C12E4CF5","ts":"1602194075.000200","team":"T01CQM3LG6L","bot_profile":{"id":"B01C00VN7L5","deleted":false,"name":"Earth-Olga-SlackCLI","updated":1602017058,"app_id":"A01C72A3R60","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01CQM3LG6L"}}}'
   recorded_at: Thu, 08 Oct 2020 21:54:35 GMT
+- request:
+    method: post
+    uri: https://slack.com/api/chat.postMessage
+    body:
+      encoding: UTF-8
+      string: token=<SLACK_TOKEN>&channel=C01CQMA6E56&text=This%20is%20our%20first%20message
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 08 Oct 2020 22:26:38 GMT
+      Server:
+      - Apache
+      X-Slack-Req-Id:
+      - cf630531cc97d42e9889507832b256f0
+      X-Oauth-Scopes:
+      - identify,channels:read,groups:read,im:read,mpim:read,users:read,chat:write
+      Access-Control-Expose-Headers:
+      - x-slack-req-id, retry-after
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Slack-Backend:
+      - r
+      X-Content-Type-Options:
+      - nosniff
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      X-Xss-Protection:
+      - '0'
+      X-Accepted-Oauth-Scopes:
+      - chat:write
+      Access-Control-Allow-Headers:
+      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
+        x-b3-sampled, x-b3-flags
+      Vary:
+      - Accept-Encoding
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      Content-Length:
+      - '345'
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Via:
+      - haproxy-www-edfp,haproxy-edge-iad-psc9
+    body:
+      encoding: ASCII-8BIT
+      string: '{"ok":true,"channel":"C01CQMA6E56","ts":"1602195998.000400","message":{"bot_id":"B01BL5M2VT9","type":"message","text":"This
+        is our first message","user":"U01CQMA06F2","ts":"1602195998.000400","team":"T01CQM3LG6L","bot_profile":{"id":"B01BL5M2VT9","deleted":false,"name":"Earth
+        - Beauttie - API Project","updated":1601961796,"app_id":"A01BL47ENLX","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01CQM3LG6L"}}}'
+  recorded_at: Thu, 08 Oct 2020 22:26:38 GMT
 recorded_with: VCR 6.0.0

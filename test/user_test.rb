@@ -9,10 +9,10 @@ describe User do
   end
 
   it "return an instance array class" do
-    VCR.use_cassette("list all") do
+    VCR.use_cassette("list users") do
       users = User.list_all
       expect(users).must_be_kind_of Array
-      expect(users.length).must_equal 2
+      expect(users.length).must_equal 5
       # expect(users).must_equal [User.new("U01CQMA06F2", "bak02013", "Beauttie", '', ''), User.new("U01CQMN9XR6", "beauttie_api_project", "Earth - Beauttie - API Project", '', '' )]
     end
   end

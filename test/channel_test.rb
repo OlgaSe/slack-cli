@@ -30,7 +30,7 @@ describe "list_all method" do
         expect(channels_list).must_be_kind_of Array
         expect(channels_list.all?(Channel)).must_equal true
 
-        expect(channels_list.length).must_equal 3
+        expect(channels_list.length).must_equal 4
       end
     end
 

@@ -1,7 +1,5 @@
 require_relative 'recipient'
 
-CHANNEL_BASE_URL = "https://slack.com/api/conversations.list"
-
 class Channel < Recipient
   attr_reader :topic, :member_count
 
@@ -16,7 +14,7 @@ class Channel < Recipient
   end
 
   def self.list_all
-    response = self.get(CHANNEL_BASE_URL, { token: BOT_TOKEN })
+    response = self.get("#{BASE_URL}conversations.list", { token: SLACK_TOKEN })
 
     channels_list = response["channels"].map do |channels_hash|
       self.new(channels_hash["id"],

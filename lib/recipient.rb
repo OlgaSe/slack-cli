@@ -2,7 +2,7 @@ require 'httparty'
 require 'dotenv'
 
 Dotenv.load
-BOT_TOKEN = ENV["SLACK_BOT_TOKEN"]
+SLACK_TOKEN = ENV["SLACK_TOKEN"]
 BASE_URL = "https://slack.com/api/"
 
 class Recipient
@@ -16,11 +16,10 @@ class Recipient
   end
 
   def send_message(message)
-    url = "#{BASE_URL}chat.postMessage"
-    response = HTTParty.post(url,
+    response = HTTParty.post("#{BASE_URL}chat.postMessage",
                              headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
                              body: {
-                                 token: BOT_TOKEN,
+                                 token: SLACK_TOKEN,
                                  channel: self.slack_id,
                                  text: message
                              })

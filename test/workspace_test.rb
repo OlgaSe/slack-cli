@@ -12,7 +12,7 @@ describe "Workspace class" do
 
   describe "Workspace instantiation" do
     it "is an instance of Workspace" do
-        expect(@workspace).must_be_kind_of Workspace
+      expect(@workspace).must_be_kind_of Workspace
     end
 
     it "is set up for specific attributes and data types" do
@@ -68,7 +68,7 @@ describe "Workspace class" do
       user_details = @workspace.show_details
 
       expect(user_details).must_be_kind_of String
-      expect(user_details).must_equal "User olga.tka4eva's real name is olga.tka4eva, and their ID on Slack is U01C12E4CF5. Their current status reads:  ."
+      expect(user_details).must_equal "User olga.tka4eva's real name is olga.tka4eva, and their ID on Slack is U01C12E4CF5. Their current status reads: YAy! :+1:."
     end
 
     it "returns a String when user is selected" do
