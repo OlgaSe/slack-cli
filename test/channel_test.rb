@@ -22,7 +22,7 @@ describe "Channel class" do
     end
   end
 
-describe "list_all method" do
+  describe "list_all method" do
     it "returns an Array of Channels" do
       VCR.use_cassette("list_channels") do
         channels_list = Channel.list_all
@@ -36,7 +36,9 @@ describe "list_all method" do
 
     it "raises an error when token is not provided" do
       VCR.use_cassette("list_channels") do
-        expect{ Channel.get("#{BASE_URL}conversations.list", { token: "" }) }.must_raise SlackApiError
+        expect{
+          Channel.get("#{BASE_URL}conversations.list", { token: "" })
+        }.must_raise SlackApiError
       end
     end
   end
