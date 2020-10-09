@@ -4,7 +4,7 @@ require_relative '../lib/channel'
 describe "Channel class" do
   describe "Channel instantiation" do
     before do
-      @channel = Channel.new("420", "weed", "the good kind of weed", 1)
+      @channel = Channel.new("C14", "earth-adies", "collaborative space for the Earth classroom", 2)
     end
 
     it "is an instance of Channel" do
@@ -12,8 +12,8 @@ describe "Channel class" do
     end
 
     it "is set up for specific attributes and data types" do
-        expect(@channel).must_respond_to :details
-        expect(Channel).must_respond_to :list_all
+      expect(@channel).must_respond_to :details
+      expect(Channel).must_respond_to :list_all
 
       expect(@channel.slack_id).must_be_kind_of String
       expect(@channel.name).must_be_kind_of String
@@ -43,7 +43,7 @@ describe "list_all method" do
 
   describe "details method" do
     before do
-      @channel = Channel.new("420", "weed", "the good kind of weed", 1)
+      @channel = Channel.new("C14", "earth-adies", "collaborative space for the Earth classroom", 2)
     end
 
     it "returns a String including specific attributes" do
