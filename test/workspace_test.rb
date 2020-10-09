@@ -96,12 +96,23 @@ describe "Workspace class" do
       end
     end
 
-    it "returns false when channel doesn't exist" do
+    it "raises an error when recipient doesn't exist" do
       VCR.use_cassette("negative-cases") do
         recipient = Recipient.new("", "")
         expect {
           recipient.send_message("weird message")
         }.must_raise SlackApiError
+      end
+    end
+
+    it "raises an error when the message is empty" do
+      VCR.use_cassette("negative-cases") do
+        @workspace.select_user("slackbot")
+        recipient = @workspace.selected
+        expect {
+          recipient.send_message("")
+        }.must_raise SlackApiError
+
       end
     end
   end
