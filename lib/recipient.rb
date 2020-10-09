@@ -5,10 +5,10 @@ require_relative 'slack_api_error'
 
 Dotenv.load
 SLACK_TOKEN = ENV["SLACK_TOKEN"]
+
 BASE_URL = "https://slack.com/api/"
 
 class Recipient
-
   attr_reader :slack_id, :name
 
   def initialize(slack_id, name)
@@ -24,15 +24,21 @@ class Recipient
                                  channel: self.slack_id,
                                  text: message
                              })
-    raise SlackApiError, "API call failed with error: #{response["error"]}" if ! response["ok"]
 
-    return response.code == 200 && response.parsed_response["ok"]
+    unless response.code == 200 && response["ok"]
+      raise SlackApiError, "API call failed with error: #{response["error"]}"
+    end
+
+    return true
   end
 
   def self.get(url, params)
     response = HTTParty.get(url, query: params)
 
-    raise SlackApiError, "API call failed with error: #{response["error"]}" if ! response["ok"]
+    unless response.code == 200 && response["ok"]
+      raise SlackApiError, "API call failed with error: #{response["error"]}"
+    end
+
     return response
   end
 
