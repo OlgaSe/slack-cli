@@ -5,7 +5,7 @@ http_interactions:
     uri: https://slack.com/api/chat.postMessage
     body:
       encoding: UTF-8
-      string: token=<SLACK_TOKEN>&channel=C01CQMA6E56&text=This%20is%20our%20first%20message%21
+      string: token=<SLACK_TOKEN>&channel=&text=u%20can%27t%20read%20me%20%3Asob%3A
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - Apache
       X-Slack-Req-Id:
-      - 6e95f1f8c25566d082d60f122042c27e
+      - 769ecbe9f8661ddbaaead934518a2273
       X-Oauth-Scopes:
       - identify,channels:read,groups:read,im:read,mpim:read,users:read,chat:write
       Access-Control-Expose-Headers:
@@ -56,23 +56,21 @@ http_interactions:
       Referrer-Policy:
       - no-referrer
       Content-Length:
-      - '348'
+      - '60'
       Content-Type:
       - application/json; charset=utf-8
       X-Via:
-      - haproxy-www-5geu,haproxy-edge-iad-32jr
+      - haproxy-www-n4uf,haproxy-edge-iad-fc1p
     body:
       encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"C01CQMA6E56","ts":"1602220738.000200","message":{"bot_id":"B01BL5M2VT9","type":"message","text":"This
-        is our first message!","user":"U01CQMA06F2","ts":"1602220738.000200","team":"T01CQM3LG6L","bot_profile":{"id":"B01BL5M2VT9","deleted":false,"name":"Earth
-        - Beauttie - API Project","updated":1601961796,"app_id":"A01BL47ENLX","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01CQM3LG6L"}}}'
+      string: '{"ok":false,"error":"channel_not_found"}'
   recorded_at: Fri, 09 Oct 2020 05:18:58 GMT
 - request:
     method: post
     uri: https://slack.com/api/chat.postMessage
     body:
       encoding: UTF-8
-      string: token=<SLACK_TOKEN>&channel=U01CQMA06F2&text=can%20u%20not%20be%20such%20a%20perfectionist%3F
+      string: token=<SLACK_TOKEN>&channel=U01CQMA06F2&text=
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
@@ -92,7 +90,7 @@ http_interactions:
       Server:
       - Apache
       X-Slack-Req-Id:
-      - bf5263d0a44653271ca79cd53c7a0e45
+      - 2a56ed3322e4a884d5fdaf9f11293850
       X-Oauth-Scopes:
       - identify,channels:read,groups:read,im:read,mpim:read,users:read,chat:write
       Access-Control-Expose-Headers:
@@ -123,15 +121,13 @@ http_interactions:
       Referrer-Policy:
       - no-referrer
       Content-Length:
-      - '359'
+      - '50'
       Content-Type:
       - application/json; charset=utf-8
       X-Via:
-      - haproxy-www-g9kt,haproxy-edge-iad-1g3v
+      - haproxy-www-hhav,haproxy-edge-iad-g302
     body:
       encoding: ASCII-8BIT
-      string: '{"ok":true,"channel":"D01C0RX1T50","ts":"1602220739.000300","message":{"bot_id":"B01BL5M2VT9","type":"message","text":"can
-        u not be such a perfectionist?","user":"U01CQMA06F2","ts":"1602220739.000300","team":"T01CQM3LG6L","bot_profile":{"id":"B01BL5M2VT9","deleted":false,"name":"Earth
-        - Beauttie - API Project","updated":1601961796,"app_id":"A01BL47ENLX","icons":{"image_36":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_36.png","image_48":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/bot_48.png","image_72":"https:\/\/a.slack-edge.com\/80588\/img\/plugins\/app\/service_72.png"},"team_id":"T01CQM3LG6L"}}}'
+      string: '{"ok":false,"error":"no_text"}'
   recorded_at: Fri, 09 Oct 2020 05:18:59 GMT
 recorded_with: VCR 6.0.0

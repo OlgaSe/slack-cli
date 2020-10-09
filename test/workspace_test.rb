@@ -5,7 +5,7 @@ require_relative '../lib/recipient'
 describe "Workspace class" do
 
   before do
-    VCR.use_cassette("load workspace") do
+    VCR.use_cassette("load_workspace") do
       @workspace = Workspace.new
     end
   end
@@ -43,7 +43,7 @@ describe "Workspace class" do
 
     it "raises an error when invalid user is entered" do
       expect {
-        @workspace.select_user("beepbop")
+        @workspace.select_user("troll")
       }.must_raise ArgumentError
     end
   end
@@ -57,7 +57,7 @@ describe "Workspace class" do
 
     it "raises an error when invalid channel is entered" do
       expect {
-        @workspace.select_channel("beepbop")
+        @workspace.select_channel("trolling")
       }.must_raise ArgumentError
     end
   end
@@ -72,11 +72,11 @@ describe "Workspace class" do
     end
 
     it "returns a String when user is selected" do
-      @workspace.select_channel("testing")
+      @workspace.select_channel("random")
       channel_details = @workspace.show_details
 
       expect(channel_details).must_be_kind_of String
-      expect(channel_details).must_equal "Channel testing's topic is  and has 3 members. Its ID on Slack is C01CQMA6E56."
+      expect(channel_details).must_equal "Channel random's topic is anything and everything and has 2 members. Its ID on Slack is C01CQM3LQ5N."
     end
 
     it "raises an error when no recipient is selected" do
@@ -87,33 +87,44 @@ describe "Workspace class" do
   end
 
   describe "send_message method" do
-    it "sends a message to the testing channel" do
+    it "can send a message to a valid channel" do
       VCR.use_cassette("send_message") do
-        @workspace.select_channel('testing')
-        response = @workspace.send_message('This is our first message')
+        @workspace.select_channel("testing")
+        response = @workspace.send_message("This is our first message!")
+
+        expect(response).must_equal true
+      end
+    end
+
+    it "can send a message to a valid user" do
+      VCR.use_cassette("send_message") do
+        @workspace.select_user("bak02013")
+        response = @workspace.send_message("can u not be such a perfectionist?")
 
         expect(response).must_equal true
       end
     end
 
     it "raises an error when recipient doesn't exist" do
-      VCR.use_cassette("negative-cases") do
+      VCR.use_cassette("bad_post_request") do
         recipient = Recipient.new("", "")
+
         expect {
-          recipient.send_message("weird message")
+          recipient.send_message("u can't read me :sob:")
         }.must_raise SlackApiError
       end
     end
 
     it "raises an error when the message is empty" do
-      VCR.use_cassette("negative-cases") do
-        @workspace.select_user("slackbot")
+      VCR.use_cassette("bad_post_request") do
+        @workspace.select_user("bak02013")
         recipient = @workspace.selected
+
         expect {
           recipient.send_message("")
         }.must_raise SlackApiError
-
       end
     end
   end
+  
 end
