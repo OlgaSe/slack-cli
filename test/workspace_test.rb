@@ -92,7 +92,7 @@ describe "Workspace class" do
         @workspace.select_channel("testing")
         response = @workspace.send_message("This is our first message!")
 
-        expect(response).must_equal true
+        expect(response).must_equal "Message sent to Channel testing!"
       end
     end
 
@@ -101,7 +101,7 @@ describe "Workspace class" do
         @workspace.select_user("bak02013")
         response = @workspace.send_message("can u not be such a perfectionist?")
 
-        expect(response).must_equal true
+        expect(response).must_equal "Message sent to User bak02013!"
       end
     end
 

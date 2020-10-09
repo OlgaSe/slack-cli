@@ -45,7 +45,7 @@ class Workspace
 
   def send_message(message)
     raise NoMethodError, "No recipient is currently selected." if no_recipient
-    @selected.send_message(message)
+    return "Message sent to #{@selected.class} #{@selected.name}!" if @selected.send_message(message)
   end
 
 end
