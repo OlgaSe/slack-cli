@@ -71,7 +71,7 @@ describe "Workspace class" do
       expect(user_details).must_equal "User olga.tka4eva's real name is olga.tka4eva, and their ID on Slack is U01C12E4CF5. Their current status reads: YAy! :+1:."
     end
 
-    it "returns a String when user is selected" do
+    it "returns a String when channel is selected" do
       @workspace.select_channel("random")
       channel_details = @workspace.show_details
 
